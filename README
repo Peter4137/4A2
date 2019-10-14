@@ -1,0 +1,39 @@
+#cp -r /public/teach/4A2/2019_4A2 .
+#cd 2019_4A2
+ 
+This directory contains all F90 Fortran source files of the skeleton
+code for 4A2 : "euler.f90" is the main program, each of the other files
+contains one subroutine. The directory also contains the geometry and 
+flow condition data for 6 test cases (test*_geom and test*_flow). 
+
+You need supply the correct lines in the .f90 files where are indicated 
+by "INSERT your code here" to complete a workable code. The detailed
+instructions on how to do this are given in "4A2EulerExercise2019.pdf"
+(download on moodle the item "4A2 Write an Euler Solver"). Item 
+"Writing the Basic Solver" (Write the Basic Solver.pdf) in Lecture 
+Slides (2019) (on moodle) is also helpful.  Useful materials of 
+Fortran 90 can be found in "fortran90.pdf" (on moodle item 
+"Fortran Guide - Queens Belfast").
+
+1) The compilation of the code is managed by the file "Makefile". Type 
+
+   make
+
+the operator system will compile all the *.f90 files into .o files and 
+link the .o files into an executable "Euler". 
+
+"make" is a command of the Unix system which uses the information in
+"Makefile" to manage the compilation of executables. 
+There are many benefits of using "Makefile". One is the following:
+the system only re-compiles  the newly updated .f90 files (compared 
+to the relevant .o files), that is, if a .f90 file is older than its .o
+file, the system will do nothing. This is extremely efficient when managing 
+big computer softwares. It is good that you learn how to use it now. 
+You may like to have a look at the file "Makefile".
+
+2) To run the code, type
+
+  ./Euler
+
+
+
