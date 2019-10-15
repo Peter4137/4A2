@@ -12,6 +12,8 @@
 ! Assign unit 1 to the file 'geom'
 ! Assign unit 2 to the file 'flow'
 
+      open( unit = 1, file = "geom")
+      open( unit = 2, file = "flow")
 ! INSERT your code here
 
 ! Read in the title and ni and nj from unit 1.
@@ -19,13 +21,14 @@
 ! appropriate values for ni & nj.
 
       read(1,*) title
-
+      read(1,*) NI, NJ
 
 ! INSERT your code here
 
 ! Check that ni and nj are less than the array dimensions i_max and j_max.
 ! Then read in xlow, ylow, xhigh, yhigh for each i between 1 and ni.
 
+      
 ! INSERT your code here
 
 ! Now read in the flow data from unit 2.
