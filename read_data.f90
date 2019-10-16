@@ -12,8 +12,8 @@
 ! Assign unit 1 to the file 'geom'
 ! Assign unit 2 to the file 'flow'
 
-      open( unit = 1, file = "geom")
-      open( unit = 2, file = "flow")
+      open( unit = 1, file = "test0_geom")
+      open( unit = 2, file = "test0_flow")
 ! INSERT your code here
 
 ! Read in the title and ni and nj from unit 1.
@@ -28,12 +28,26 @@
 ! Check that ni and nj are less than the array dimensions i_max and j_max.
 ! Then read in xlow, ylow, xhigh, yhigh for each i between 1 and ni.
 
+      REAL, DIMENSION(1:ni) :: xlow, ylow, xhigh, yhigh
+
+      if(ni.lt.i_max.and.nj.lt.j_max) then
+            do i=1,ni 
+                  read(1,*) xlow(i), ylow(i), xhigh(i), yhigh(i)
+            end do
+      else
+            print *, "ni or nj is too large"
+            exit()
+      end if
       
 ! INSERT your code here
 
 ! Now read in the flow data from unit 2.
 ! You should read in the following variables sequentially:
 
+      read(2,*) rgas, gamma
+      read(2,*) pstagin, tstagin, alpha1, pdown
+      read(2,*) cfl, smooth_fac_in
+      read(2,*) nsteps, conlim_in
 !       rgas, gamma
 !       pstagin, tstagin, alpha1, pdown
 !       cfl, smooth_fac_in
