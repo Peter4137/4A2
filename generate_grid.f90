@@ -21,6 +21,7 @@
             do j=1,nj
                   x(i,j) = xlow(i) + j*(xhigh(i)-xlow(i))/nj
                   y(i,j) = ylow(i) + j*(yhigh(i)-ylow(i))/nj
+                  print *, x(i,j), y(i,j)
             end do
       end do
 
@@ -55,8 +56,7 @@
       dmin = 1000
       do i=1,ni-1
             do j=1,nj-1
-                  dlix(i,j) = ABS(y(i,j+1)-y(i,j))
-
+                  dlix(i,j) = abs(y(i,j+1)-y(i,j))
                   if(dlix(i,j).lt.dmin) then
                         dmin = dlix(i,j)
                   end if
