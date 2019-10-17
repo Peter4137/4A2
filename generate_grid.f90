@@ -15,11 +15,11 @@
 ! linearly interpolated between these values for j between 1 and nj.
 ! i.e.  x(i,1) should be xlow(i), x(i,nj) should be xhigh(i), etc.
 
-      REAL, DIMENSION(1:ni,nj) :: x, y
+      ! REAL, DIMENSION(1:ni,nj) :: x, y
 
       do i=1,ni 
-            do j=0,nj-1
-                  x(i,j) = xlow(i)
+            do j=1,nj
+                  x(i,j) = xlow(i) + j*(xhigh(i)-xlow(i))/nj
                   y(i,j) = ylow(i) + j*(yhigh(i)-ylow(i))/nj
             end do
       end do
@@ -33,7 +33,7 @@
 ! half of the cross product of the vectors forming the diagonals.
 ! see Hirsch volume 1, section 6.2.1. (or lecture).
 ! Make sure that the area comes out positive!
-      REAL, DIMENSION(1:ni-1,nj-1) :: area
+      ! REAL, DIMENSION(1:ni-1,nj-1) :: area
       do i=1,ni-1
             do j=1,nj-1
                   area(i,j) = 0.5*(((x(i+1,j+1)-x(i,j))*(y(i,j+1)-y(i+1,j)))-((y(i+1,j+1)-y(i,j))*(x(i,j+1)-x(i+1,j))))
@@ -50,30 +50,30 @@
 ! magnitude equal to the length of the face.
 ! It is positive in the direction of an inward normal to the cell i,j .
 ! Call these lengths dlix(i,j) and dliy(i,j)
-      REAL, DIMENSION(1:ni-1,nj-1) :: dlix,dliy,dljx,dljy
-      REAL :: dmin
+      ! REAL, DIMENSION(1:ni-1,nj-1) :: dlix,dliy,dljx,dljy
+      ! REAL :: dmin
       dmin = 1000
       do i=1,ni-1
             do j=1,nj-1
-                  dlix(i,j) = y(i,j+1)-y(i,j)
+                  dlix(i,j) = ABS(y(i,j+1)-y(i,j))
 
                   if(dlix(i,j).lt.dmin) then
                         dmin = dlix(i,j)
                   end if
 
-                  dliy(i,j) = x(i,j+1)-x(i,j)
+                  dliy(i,j) = abs(x(i,j+1)-x(i,j))
 
                   if(dliy(i,j).lt.dmin) then
                         dmin = dliy(i,j)
                   end if
 
-                  dljx(i,j) = y(i+1,j)-y(i,j)
+                  dljx(i,j) = abs(y(i+1,j)-y(i,j))
 
                   if(dljx(i,j).lt.dmin) then
                         dmin = dljx(i,j)
                   end if
 
-                  dljy(i,j) = x(i+1,j)-x(i,j)
+                  dljy(i,j) = abs(x(i+1,j)-x(i,j))
 
                   if(dljy(i,j).lt.dmin) then
                         dmin = dljy(i,j)

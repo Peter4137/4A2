@@ -28,7 +28,7 @@
 ! Check that ni and nj are less than the array dimensions i_max and j_max.
 ! Then read in xlow, ylow, xhigh, yhigh for each i between 1 and ni.
 
-      REAL, DIMENSION(1:ni) :: xlow, ylow, xhigh, yhigh
+      ! REAL, DIMENSION(1:ni) :: xlow, ylow, xhigh, yhigh
 
       if(ni.lt.i_max.and.nj.lt.j_max) then
             do i=1,ni 
@@ -36,7 +36,6 @@
             end do
       else
             print *, "ni or nj is too large"
-            exit()
       end if
       
 ! INSERT your code here
