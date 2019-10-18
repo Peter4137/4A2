@@ -21,7 +21,6 @@
             do j=1,nj
                   x(i,j) = xlow(i) + j*(xhigh(i)-xlow(i))/nj
                   y(i,j) = ylow(i) + j*(yhigh(i)-ylow(i))/nj
-                  print *, x(i,j), y(i,j)
             end do
       end do
 
@@ -54,33 +53,34 @@
       ! REAL, DIMENSION(1:ni-1,nj-1) :: dlix,dliy,dljx,dljy
       ! REAL :: dmin
       dmin = 1000
-      do i=1,ni-1
-            do j=1,nj-1
-                  dlix(i,j) = abs(y(i,j+1)-y(i,j))
-                  if(dlix(i,j).lt.dmin) then
-                        dmin = dlix(i,j)
+      do i=1,ni
+            do j=1,nj
+                  if(j.eq.nj) then
+                        dlix(i,j) = 0
+                        dliy(i,j) = 0
+                  else
+                        dlix(i,j) = y(i,j+1)-y(i,j)
+                        dliy(i,j) = x(i,j)-x(i,j+1)
+
+                        if(norm2([dlix(i,j), dliy(i,j)]).lt.dmin) then
+                              dmin = norm2([dlix(i,j), dliy(i,j)])
+                        end if
                   end if
 
-                  dliy(i,j) = abs(x(i,j+1)-x(i,j))
+                  if(i.eq.ni) then
+                        dljx(i,j) = 0
+                        dljy(i,j) = 0
+                  else
+                        dljx(i,j) = y(i,j)-y(i+1,j)
+                        dljy(i,j) = x(i+1,j)-x(i,j)
 
-                  if(dliy(i,j).lt.dmin) then
-                        dmin = dliy(i,j)
+                        if(norm2([dljx(i,j), dljy(i,j)]).lt.dmin) then
+                              dmin = norm2([dlix(i,j), dliy(i,j)])
+                        end if
                   end if
-
-                  dljx(i,j) = abs(y(i+1,j)-y(i,j))
-
-                  if(dljx(i,j).lt.dmin) then
-                        dmin = dljx(i,j)
-                  end if
-
-                  dljy(i,j) = abs(x(i+1,j)-x(i,j))
-
-                  if(dljy(i,j).lt.dmin) then
-                        dmin = dljy(i,j)
-                  end if
-
             end do
       end do
+
 
 ! INSERT your code here
 
