@@ -41,14 +41,24 @@
           roinlet(j) = 0.9999*rostagin
         endif
 
+        tstat = tstagin*(roinlet(j)/rostagin)**gm1
+        vel = sqrt(2*cp*(tstagin-tstat))
+        rovx(1,j) = roinlet(j)*vel*sin(alpha1)
+        rovy(1,j) = roinlet(j)*vel*cos(alpha1)
+        p(1,j) = pstagin-0.5*roinlet(j)*vel**2
+        roe(1,j) = roinlet(j)*(cv*tstat + 0.5*vel**2)
 ! INSERT your code here to calculate p(1,j), rovx(1,j), rovy(1,j)
 ! and roe(1,j)  from roinlet(j), pstagin, tstagin  and alpha1.
 ! Also set vx(1,j), vy(1,j) and hstag(1,j)
 
-      enddo
+      end do
 
 ! Set the pressure at the downstream boundary i = ni to the exit
 ! static pressure "pdown" for all j values.
+
+      do j=1,nj
+            p(ni,j) = pdown
+      end do
 
       ! INSERT your code here
 
