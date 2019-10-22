@@ -33,7 +33,8 @@
 
       do i=1,ni-1
         do j=2,nj-1
-
+          fluxj_mass(i,j) = 0.5*( (rovx(i,j)+rovx(i+1,j))*dljx(i,j) +  &
+                                  (rovy(i,j)+rovy(i+1,j))*dljy(i,j) )
 ! INSERT your code here to calculate "fluxj_mass(i,j)"
 
         end do
@@ -49,7 +50,7 @@
       end do
 
 ! Calculate the fluxes of x-momentum
-! INSERT your cose here to set "fluxi_xmom(i,j)"
+! INSERT your code here to set "fluxi_xmom(i,j)"
       do i=1,ni
         do j=1,nj-1
           fluxi_xmom(i,j) = 0.5*( fluxi_mass(i,j)*(vx(i,j)+vx(i,j+1))  +  &
@@ -59,7 +60,8 @@
 
       do i=1,ni-1
         do j=1,nj
-
+          fluxj_xmom(i,j) = 0.5*( fluxj_mass(i,j)*(vy(i,j)+vy(i+1,j))  +  &
+                                (p(i,j)+p(i+1,j))*dlix(i,j)   ) !check this and do all below
 ! INSERT your code here to set "fluxj_xmom(i,j)"
 
         end do
