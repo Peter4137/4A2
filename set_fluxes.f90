@@ -58,26 +58,46 @@
         end do
       end do
 
+! INSERT your code here to set "fluxj_xmom(i,j)"
       do i=1,ni-1
         do j=1,nj
-          fluxj_xmom(i,j) = 0.5*( fluxj_mass(i,j)*(vy(i,j)+vy(i+1,j))  +  &
-                                (p(i,j)+p(i+1,j))*dlix(i,j)   ) !check this and do all below
-! INSERT your code here to set "fluxj_xmom(i,j)"
-
+          fluxj_xmom(i,j) = 0.5*( fluxj_mass(i,j)*(vx(i,j)+vx(i+1,j))  +  &
+                                (p(i,j)+p(i+1,j))*dliy(i,j)   ) 
         end do
       end do
 
 ! Calculate the fluxes of y-momentum
 ! INSERT your code here to set "fluxi_ymom(i,j)"
+      do i=1,ni
+        do j=1,nj-1
+          fluxi_ymom(i,j) = 0.5*( fluxi_mass(i,j)*(vy(i,j)+vy(i,j+1))  +  &
+                                (p(i,j)+p(i,j+1))*dljx(i,j)   )
+        end do
+      end do
 
 ! INSERT your code here to set "fluxj_ymom(i,j)"
+      do i=1,ni-1
+        do j=1,nj
+          fluxj_ymom(i,j) = 0.5*( fluxj_mass(i,j)*(vy(i,j)+vy(i+1,j))  +  &
+                                (p(i,j)+p(i+1,j))*dljy(i,j)   )
+        end do
+      end do
 
 ! Calculate the fluxes of enthalpy
-
 ! INSERT your code here to set "fluxi_enth(i,j)"
-
+      do i=1,ni
+        do j=1,nj-1
+          fluxi_enth(i,j) = 0.5*( rovx(i,j)+rovx(i,j+1))*0.5*(hstag(i,j)+hstag(i,j+1)) + &
+                            0.5*( rovy(i,j)+rovy(i,j+1))*0.5*(hstag(i,j)+hstag(i,j+1))
+        end do
+      end do
 ! INSERT your code here to set "fluxj_enth(i,j)"
-
+      do i=1,ni-1
+        do j=1,nj
+          fluxj_enth(i,j) = 0.5*( rovx(i,j)+rovx(i+1,j))*0.5*(hstag(i,j)+hstag(i+1,j)) + &
+                            0.5*( rovy(i,j)+rovy(i+1,j))*0.5*(hstag(i,j)+hstag(i+1,j))
+        end do
+      end do
 ! Note that we could have set the flux of enthalpy to zero on
 ! j=1 and j=nj. This would save a bit of cpu time but the fluxes
 ! will be zero anyhow since the mass fluxes were set to zero.
