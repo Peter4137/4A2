@@ -82,13 +82,13 @@
      prop_inc(1,1) = delprop(1,1)
 
 ! INSERT your code here to calculate "prop_inc" for the node with i=1,j=nj.
-     prop_inc(1,nj) = delprop(1,nj-1)
+     prop_inc(1,nj) = delprop(1,nj)
 
 ! INSERT your code here to calculate "prop_inc" for the node with i=ni,j=1.
-     prop_inc(ni,1) = delprop(ni-1,1)
+     prop_inc(ni,1) = delprop(ni,1)
 
 ! INSERT your code here to calculate "prop_inc" for the node with i=ni,j=nj.
-     prop_inc(ni,nj) = delprop(ni-1,nj-1)
+     prop_inc(ni,nj) = delprop(ni,nj)
 
 ! If the values in delprop have been hi-jacked by the second order timestep extension,
 ! restore them here to the true residuals. (The second order extension should have

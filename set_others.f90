@@ -22,7 +22,7 @@
             do j=1,nj
                   vx(i,j) = rovx(i,j)/ro(i,j)
                   vy(i,j) = rovy(i,j)/ro(i,j)
-                  p(i,j) = (gamma-1)*(roe(i,j)-0.5*ro(i,j)*norm2([vx(i,j),vy(i,j)]))
+                  p(i,j) = (gamma-1)*(roe(i,j)-0.5*ro(i,j)*norm2([vx(i,j),vy(i,j)])**2)
                   hstag(i,j) = (roe(i,j)+p(i,j))/ro(i,j)
             end do
       end do

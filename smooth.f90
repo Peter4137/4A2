@@ -31,7 +31,7 @@
       sfm1 = 1.0 - sf
 
       do i=1,ni
-        ip1 = i+1
+         ip1 = i+1
          if( i==ni ) ip1 = ni
          im1 = i-1
          if( i==1  ) im1 = 1
