@@ -40,7 +40,7 @@
            avg = 0.25*(prop(ip1,j)+prop(im1,j)+prop(i,j-1)+prop(i,j+1))
 
 ! INSERT your code here
-           store(i,j) = sfm1*prop(i,j) + sf(avg)
+           store(i,j) = sfm1*prop(i,j) + sf*avg
 
          enddo
 
@@ -51,8 +51,8 @@
               -  prop(i,nj-2))/3.0
 
 ! INSERT your code here to smooth the surface values
-         store(i,1) = sfm1*prop(i,1) + sf(avg1)
-         store(i,nj) = sfm1*prop(i,nj) + sf(avgnj)
+         store(i,1) = sfm1*prop(i,1) + sf*avg1
+         store(i,nj) = sfm1*prop(i,nj) + sf*avgnj
       enddo
 
 ! Reset the smoothed value to "prop" before returning to the main program.
