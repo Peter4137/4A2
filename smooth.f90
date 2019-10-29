@@ -48,7 +48,7 @@
 
          avg1  = (prop(im1,1)+prop(ip1,1)+2.*prop(i,2)-prop(i,3))/3.0
          avgnj = (prop(im1,nj) + prop(ip1,nj) + 2.*prop(i,nj-1)    &
-              -  prop(i,nj-2))/3.0
+                  - prop(i,nj-2))/3.0
 
 ! INSERT your code here to smooth the surface values
          store(i,1) = sfm1*prop(i,1) + sf*avg1
