@@ -42,9 +42,12 @@
         endif
 
         tstat = tstagin*(roinlet(j)/rostagin)**gm1
+
         vel = sqrt(2*cp*(tstagin-tstat))
+        
         rovx(1,j) = roinlet(j)*vel*cos(alpha1)
         rovy(1,j) = roinlet(j)*vel*sin(alpha1)
+        
         p(1,j) = pstagin-0.5*roinlet(j)*vel**2
         roe(1,j) = roinlet(j)*(cv*tstat + 0.5*vel**2)
 
