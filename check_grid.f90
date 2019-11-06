@@ -58,5 +58,4 @@
 
 ! Any other tests that you can think of. For example you could plot
 ! contours of  "area(i,j)" by using  --  call output_hg(area) .
-
       end

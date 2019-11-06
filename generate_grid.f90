@@ -62,21 +62,17 @@
                         dlix(i,j) = y(i,j+1)-y(i,j)
                         dliy(i,j) = x(i,j)-x(i,j+1)
 
-                        if(norm2([dlix(i,j), dliy(i,j)]).lt.dmin) then
-                              dmin = norm2([dlix(i,j), dliy(i,j)])
-                        end if
+                        dmin = min(dmin, dlix(i,j), dliy(i,j))
                   end if
-
+                  
                   if(i.eq.ni) then
                         dljx(i,j) = 0
                         dljy(i,j) = 0
                   else
                         dljx(i,j) = y(i,j)-y(i+1,j)
                         dljy(i,j) = x(i+1,j)-x(i,j)
-
-                        if(norm2([dljx(i,j), dljy(i,j)]).lt.dmin) then
-                              dmin = norm2([dlix(i,j), dliy(i,j)])
-                        end if
+                        
+                        dmin = min(dmin, dljx(i,j), dljy(i,j))
                   end if
             end do
       end do
