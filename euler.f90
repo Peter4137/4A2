@@ -41,8 +41,8 @@
 ! necessary. when your program is working you should replace it
 ! with "flow_guess" to obtain a better guess and a faster solution.
 
-     ! call crude_guess
-      call flow_guess
+      call crude_guess
+      ! call flow_guess
 
 ! You can call "output" here to plot out your initial guess of
 ! the flow field.
@@ -122,7 +122,6 @@
           write(6,*) ' To a convergence limit of ', conlim
           exit
         endif
-
       end do
       !call output(1)
       !call output_mat(1)

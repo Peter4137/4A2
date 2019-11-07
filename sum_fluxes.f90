@@ -58,7 +58,7 @@
         prop_inc(i,1) = 0.5*(delprop(i,1)+delprop(i-1,1))
 
 ! INSERT your code here to calculate "prop_inc" for the nodes with j=nj.
-        prop_inc(i,nj) = 0.5*(delprop(i,nj)+delprop(i-1,nj))
+        prop_inc(i,nj) = 0.5*(delprop(i,nj-1)+delprop(i-1,nj-1))
 
       end do
 
@@ -68,7 +68,7 @@
       do j=2,nj-1
 
 ! INSERT your code here to calculate "prop_inc" for the nodes with i=ni.
-        prop_inc(ni,j) = 0.5*(delprop(ni,j)+delprop(ni,j-1))
+        prop_inc(ni,j) = 0.5*(delprop(ni-1,j)+delprop(ni-1,j-1))
 
 ! INSERT your code here to calculate "prop_inc" for the nodes with i=1.
         prop_inc(1,j) = 0.5*(delprop(1,j)+delprop(1,j-1))

@@ -31,17 +31,19 @@
 ! It is absolutely essential that this is correct !
 ! If not go back and check your subroutine "generate_grid".
 
-      small = 0.0001
+      small = 0.000002
       do i=1,ni-1
             do j=1,nj-1
                   xSum = dlix(i,j) + dljx(i,j) - dlix(i+1,j) - dljx(i,j+1)
                   if (abs(xSum).GT.small) then
                         write(6,*) 'X-grid not zero!'
+                        write(6,*) xSum
                         stop
                   endif
                   xSum = dliy(i,j) + dljy(i,j) - dliy(i+1,j) - dljy(i,j+1)
                   if (abs(ySum).GT.small) then
                         write(6,*) 'Y-grid not zero!'
+                        write(6,*) ySum
                         stop
                   endif
             end do

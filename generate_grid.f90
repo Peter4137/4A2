@@ -19,8 +19,10 @@
 
       do i=1,ni 
             do j=1,nj
-                  x(i,j) = xlow(i) + j*(xhigh(i)-xlow(i))/nj
-                  y(i,j) = ylow(i) + j*(yhigh(i)-ylow(i))/nj
+                  x(i,j) = ((xhigh(i)-xlow(i))/(nj-1))*(j-1) + xlow(i)
+                  y(i,j) = ((yhigh(i)-ylow(i))/(nj-1))*(j-1) + ylow(i)
+                  ! x(i,j) = xlow(i) + j*(xhigh(i)-xlow(i))/nj
+                  ! y(i,j) = ylow(i) + j*(yhigh(i)-ylow(i))/nj
             end do
       end do
 
@@ -36,10 +38,7 @@
       ! REAL, DIMENSION(1:ni-1,nj-1) :: area
       do i=1,ni-1
             do j=1,nj-1
-                  area(i,j) = 0.5*(((x(i+1,j+1)-x(i,j))*(y(i,j+1)-y(i+1,j)))-((y(i+1,j+1)-y(i,j))*(x(i,j+1)-x(i+1,j))))
-                  if(area(i,j).lt.0) then
-                        area(i,j) = -area(i,j)
-                  end if
+                  area(i,j) = abs(0.5*(((x(i+1,j+1)-x(i,j))*(y(i,j+1)-y(i+1,j)))-((y(i+1,j+1)-y(i,j))*(x(i,j+1)-x(i+1,j)))))
             end do
       end do
 ! INSERT your code here
@@ -54,26 +53,20 @@
       ! REAL :: dmin
       dmin = 1000
       do i=1,ni
-            do j=1,nj
-                  if(j.eq.nj) then
-                        dlix(i,j) = 0
-                        dliy(i,j) = 0
-                  else
-                        dlix(i,j) = y(i,j+1)-y(i,j)
-                        dliy(i,j) = x(i,j)-x(i,j+1)
+            do j=1,nj-1
+                  dlix(i,j) = y(i,j+1)-y(i,j)
+                  dliy(i,j) = x(i,j)-x(i,j+1)
 
-                        dmin = min(dmin, dlix(i,j), dliy(i,j))
-                  end if
-                  
-                  if(i.eq.ni) then
-                        dljx(i,j) = 0
-                        dljy(i,j) = 0
-                  else
-                        dljx(i,j) = y(i,j)-y(i+1,j)
-                        dljy(i,j) = x(i+1,j)-x(i,j)
+                  dmin = min(dmin, norm2([dlix(i,j), dliy(i,j)]))
+            end do
+      end do
+
+      do i=1,ni-1
+            do j=1,nj
+                  dljx(i,j) = y(i,j)-y(i+1,j)
+                  dljy(i,j) = x(i+1,j)-x(i,j)
                         
-                        dmin = min(dmin, dljx(i,j), dljy(i,j))
-                  end if
+                  dmin = min(dmin, norm2([dljx(i,j), dljy(i,j)]))
             end do
       end do
 

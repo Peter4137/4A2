@@ -48,12 +48,11 @@
         rovx(1,j) = roinlet(j)*vel*cos(alpha1)
         rovy(1,j) = roinlet(j)*vel*sin(alpha1)
         
-        p(1,j) = pstagin-0.5*roinlet(j)*vel**2
         roe(1,j) = roinlet(j)*(cv*tstat + 0.5*vel**2)
-
+        p(1,j) = gm1*(roe(1,j) - 0.5*roinlet(j)*vel**2)
         vx(1,j) = rovx(1,j)/roinlet(j)
         vy(1,j) = rovy(1,j)/roinlet(j)
-        hstag(1,j) = (roe(1,j)+p(1,j))/roinlet(j)
+        hstag(1,j) = cp*tstat + 0.5*vel**2
 
 ! INSERT your code here to calculate p(1,j), rovx(1,j), rovy(1,j)
 ! and roe(1,j)  from roinlet(j), pstagin, tstagin  and alpha1.

@@ -21,6 +21,6 @@
 
       astag  = sqrt(gamma*rgas*tstagin)
       umax   = astag
-      deltat = cfl*dmin/(umax+astag)
+      deltat = cfl*dmin/abs(umax+astag)
 ! INSERT your code here
       end

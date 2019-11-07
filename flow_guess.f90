@@ -7,10 +7,11 @@
       implicit none
 
 ! Local stuff
-      real ::   mflow, machlim, tlim, mach_num, Tdown,e,dy,dx,dxy
+      real ::   mflow, machlim, tlim, mach_num, Tdown,e,dy,dx,dxy, rodown, vdown, gm1
       real, dimension(i_max) :: Tstatic,Pstatic
       integer ::  i, j
 
+      gm1 = gamma-1
 ! In this subroutine we make an initial guess of the primary variables
 ! i.e.  ro, rovx, rovy and roe.
 ! The guess does not need to be very accurate but the better
@@ -18,8 +19,11 @@
 ! You should assign values to ro(i,j), rovx(i,j), rovy(i,j) and roe(i,j)
 ! at every grid point in this subroutine.
 
-! Work out the length of each "i" line between grid points "i,1" snd "i,nj"
+! Work out the length of each "i" line between grid points "i,1" and "i,nj"
 ! and call it  "aflow(i)" .
+      do i=1,ni
+            aflow(i) = norm2([x(i,nj)-x(i,1), y(i,nj)-y(i,1)])
+      end do
 
 ! INSERT your code here
 
@@ -28,6 +32,10 @@
 ! and temperature tstagin and the exit static pressure pdown.
 ! Use these together with "aflow(ni)" to estimate the mass flow rate.
 ! call this "mflow".
+      Tdown = tstagin*(pdown/pstagin)**(gm1/gamma)
+      rodown = (pdown/(rgas*Tdown))
+      vdown = sqrt(2*cp*(tstagin-Tdown))
+      mflow = rodown*aflow(ni)*vdown
 
 ! INSERT your code here
 
@@ -54,6 +62,16 @@
 ! Use this density and continuity to obtain a better estimate of
 ! the velocity, set = v_guess(i).
 
+      do i=1,ni
+            v_guess(i) = mflow/(rodown*aflow(i))
+            Tstatic(i) = tstagin - (v_guess(i)**2)/(2*cp)
+            if(Tstatic(i).lt.tlim) then
+                  Tstatic(i) = tlim
+            end if
+            ro_guess(i) = pstagin*(Tstatic(i)/tstagin)**(gamma/gm1)
+            v_guess(i) = mflow/(ro_guess(i)*aflow(i))
+      end do
+
 ! INSERT your code here
 
 ! Direct the velocity found above along the j= constant grid lines to find
@@ -62,6 +80,20 @@
 ! Also set ro(i,j).
 ! Note that roe(i,j) includes the kinetic energy component of the
 ! internal energy.
+
+      do i=1,ni-1
+            do j=1,nj
+                  dx  = x(i,nj)-x(i,1)
+                  dy  = y(i,nj)-y(i,1)
+                  dxy = norm2([dx,dy]) 
+                  vx(i,j) = v_guess(i)*dx/dxy
+                  vy(i,j) = v_guess(i)*dy/dxy
+                  ro(i,j) = ro_guess(i)
+                  rovx(i,j) = ro(i,j)*vx(i,j) 
+                  rovy(i,j) = ro(i,j)*vy(i,j)
+                  roe(i,j) = ro(i,j)*(cv*Tstatic(i)+0.5*v_guess(i)**2)
+            end do
+      end do
 
 ! INSERT your code here
      
