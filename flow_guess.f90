@@ -36,7 +36,6 @@
       rodown = (pdown/(rgas*Tdown))
       vdown = sqrt(2*cp*(tstagin-Tdown))
       mflow = rodown*aflow(ni)*vdown
-
 ! INSERT your code here
 
 ! Set a limit to the maximum allowable mach number in the initial
@@ -68,7 +67,7 @@
             if(Tstatic(i).lt.tlim) then
                   Tstatic(i) = tlim
             end if
-            ro_guess(i) = pstagin*(Tstatic(i)/tstagin)**(gamma/gm1)
+            ro_guess(i) = (pstagin*(Tstatic(i)/tstagin)**(gamma/gm1))/(rgas*Tstatic(i))
             v_guess(i) = mflow/(ro_guess(i)*aflow(i))
       end do
 
@@ -86,14 +85,16 @@
                   dx  = x(i,nj)-x(i,1)
                   dy  = y(i,nj)-y(i,1)
                   dxy = norm2([dx,dy]) 
-                  vx(i,j) = v_guess(i)*dx/dxy
-                  vy(i,j) = v_guess(i)*dy/dxy
+                  vx(i,j) = v_guess(i)*dy/dxy
+                  vy(i,j) = v_guess(i)*dx/dxy
                   ro(i,j) = ro_guess(i)
-                  rovx(i,j) = ro(i,j)*vx(i,j) 
-                  rovy(i,j) = ro(i,j)*vy(i,j)
-                  roe(i,j) = ro(i,j)*(cv*Tstatic(i)+0.5*v_guess(i)**2)
+                  rovx(i,j) = ro_guess(i)*vx(i,j) 
+                  rovy(i,j) = ro_guess(i)*vy(i,j)
+                  roe(i,j) = ro_guess(i)*(cv*Tstatic(i)+0.5*v_guess(i)**2)
             end do
       end do
+      
+
 
 ! INSERT your code here
      

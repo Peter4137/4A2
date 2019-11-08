@@ -41,8 +41,9 @@
 ! necessary. when your program is working you should replace it
 ! with "flow_guess" to obtain a better guess and a faster solution.
 
-      call crude_guess
-      ! call flow_guess
+      ! call crude_guess
+      call flow_guess
+      ! stop
 
 ! You can call "output" here to plot out your initial guess of
 ! the flow field.
