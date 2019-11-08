@@ -19,10 +19,10 @@
 
       do i=1,ni 
             do j=1,nj
-                  x(i,j) = ((xhigh(i)-xlow(i))/(nj-1))*(j-1) + xlow(i)
-                  y(i,j) = ((yhigh(i)-ylow(i))/(nj-1))*(j-1) + ylow(i)
-                  ! x(i,j) = xlow(i) + j*(xhigh(i)-xlow(i))/nj
-                  ! y(i,j) = ylow(i) + j*(yhigh(i)-ylow(i))/nj
+                  ! x(i,j) = ((xhigh(i)-xlow(i))/(nj-1))*(j-1) + xlow(i)
+                  ! y(i,j) = ((yhigh(i)-ylow(i))/(nj-1))*(j-1) + ylow(i)
+                  x(i,j) = xlow(i) + j*(xhigh(i)-xlow(i))/nj
+                  y(i,j) = ylow(i) + j*(yhigh(i)-ylow(i))/nj
             end do
       end do
 
