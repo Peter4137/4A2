@@ -12,8 +12,8 @@
 ! Assign unit 1 to the file 'geom'
 ! Assign unit 2 to the file 'flow'
 
-      open( unit = 1, file = "test0_geom")
-      open( unit = 2, file = "test0_flow")
+      open( unit = 1, file = "test2_geom")
+      open( unit = 2, file = "test2_flow")
 ! INSERT your code here
 
 ! Read in the title and ni and nj from unit 1.
