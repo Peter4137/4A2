@@ -29,7 +29,7 @@
 ! time step "deltat" and save it in "delprop(i,j)".
       do i=1,ni-1
             do j=1,nj-1
-                  delprop(i,j) = (deltat/area(i,j))*(iflux(i,j) - iflux(i+1,j) + jflux(i,j) - jflux(i,j+1))
+                  delprop(i,j) = (step(i,j)/area(i,j))*(iflux(i,j) - iflux(i+1,j) + jflux(i,j) - jflux(i,j+1))
             end do
       end do
 ! INSERT your code here to calculate the change in the variable

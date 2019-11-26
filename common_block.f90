@@ -10,8 +10,9 @@ module common_block
 ! Variables associated with the grid
       real, dimension(i_max) :: xlow, ylow, xhigh, yhigh
       real, dimension(i_max,j_max) :: x, y, area, dli, dlj, dljx, dljy, dlix, dliy
-      real  ::  dmin
+      real, dimension(i_max,j_max)  ::  dmin
       integer ::   ni,nj
+      real, dimension(i_max,j_max) :: step
 
 ! Variables to hold node increments
       real, dimension(i_max,j_max) ::  ro_inc, roe_inc, rovx_inc, rovy_inc

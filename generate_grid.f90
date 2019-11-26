@@ -51,13 +51,12 @@
 ! Call these lengths dlix(i,j) and dliy(i,j)
       ! REAL, DIMENSION(1:ni-1,nj-1) :: dlix,dliy,dljx,dljy
       ! REAL :: dmin
-      dmin = 1000
       do i=1,ni
             do j=1,nj-1
                   dlix(i,j) = y(i,j+1)-y(i,j)
                   dliy(i,j) = x(i,j)-x(i,j+1)
 
-                  dmin = min(dmin, norm2([dlix(i,j), dliy(i,j)]))
+                  dmin(i,j) = norm2([dlix(i,j), dliy(i,j)])
             end do
       end do
 
@@ -66,7 +65,7 @@
                   dljx(i,j) = y(i,j)-y(i+1,j)
                   dljy(i,j) = x(i+1,j)-x(i,j)
                         
-                  dmin = min(dmin, norm2([dljx(i,j), dljy(i,j)]))
+                  dmin(i,j) = min(dmin(i,j), norm2([dljx(i,j), dljy(i,j)]))
             end do
       end do
 
