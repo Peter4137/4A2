@@ -1,5 +1,5 @@
-GFORTRAN module version '10' created from global.f90
-MD5:08024c1341b8f1ef32b4261723510a46 -- If you edit this, you'll get what you deserve.
+GFORTRAN module version '10' created from common_block.f90
+MD5:484815d1b588ca66765cf07352010a06 -- If you edit this, you'll get what you deserve.
 
 (() () () () () () () () () () () () () () () () () () () () () () () ()
 () () ())
@@ -139,7 +139,10 @@ INTEGER 4 0 0 0 INTEGER ()) 0 '201') (CONSTANT (INTEGER 4 0 0 0 INTEGER
 ()) 0 '1') (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '51')) 0 () () () 0
 0)
 27 'dmin' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
-UNKNOWN IMPLICIT-SAVE 0 0) (REAL 4 0 0 0 REAL ()) 0 0 () () 0 () () () 0
+UNKNOWN IMPLICIT-SAVE 0 0 DIMENSION) (REAL 4 0 0 0 REAL ()) 0 0 () (2 0
+EXPLICIT (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '1') (CONSTANT (
+INTEGER 4 0 0 0 INTEGER ()) 0 '201') (CONSTANT (INTEGER 4 0 0 0 INTEGER
+()) 0 '1') (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '51')) 0 () () () 0
 0)
 28 'eavg' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN IMPLICIT-SAVE 0 0) (REAL 4 0 0 0 REAL ()) 0 0 () () 0 () () () 0
@@ -400,53 +403,59 @@ CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '201') (CONSTANT (INTEGER 4 0 0
 86 'smooth_fac' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT
 UNKNOWN-PROC UNKNOWN IMPLICIT-SAVE 0 0) (REAL 4 0 0 0 REAL ()) 0 0 () ()
 0 () () () 0 0)
-87 'title' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+87 'step' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN IMPLICIT-SAVE 0 0 DIMENSION) (REAL 4 0 0 0 REAL ()) 0 0 () (2 0
+EXPLICIT (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '1') (CONSTANT (
+INTEGER 4 0 0 0 INTEGER ()) 0 '201') (CONSTANT (INTEGER 4 0 0 0 INTEGER
+()) 0 '1') (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '51')) 0 () () () 0
+0)
+88 'title' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN IMPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (
 INTEGER 4 0 0 0 INTEGER ()) 0 '80'))) 0 0 () () 0 () () () 0 0)
-88 'tstagin' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+89 'tstagin' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN IMPLICIT-SAVE 0 0) (REAL 4 0 0 0 REAL ()) 0 0 () () 0 () () () 0
 0)
-89 'v_guess' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+90 'v_guess' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN IMPLICIT-SAVE 0 0 DIMENSION) (REAL 4 0 0 0 REAL ()) 0 0 () (1 0
 EXPLICIT (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '1') (CONSTANT (
 INTEGER 4 0 0 0 INTEGER ()) 0 '201')) 0 () () () 0 0)
-90 'vx' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+91 'vx' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN IMPLICIT-SAVE 0 0 DIMENSION) (REAL 4 0 0 0 REAL ()) 0 0 () (2 0
 EXPLICIT (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '1') (CONSTANT (
 INTEGER 4 0 0 0 INTEGER ()) 0 '201') (CONSTANT (INTEGER 4 0 0 0 INTEGER
 ()) 0 '1') (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '51')) 0 () () () 0
 0)
-91 'vy' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+92 'vy' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN IMPLICIT-SAVE 0 0 DIMENSION) (REAL 4 0 0 0 REAL ()) 0 0 () (2 0
 EXPLICIT (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '1') (CONSTANT (
 INTEGER 4 0 0 0 INTEGER ()) 0 '201') (CONSTANT (INTEGER 4 0 0 0 INTEGER
 ()) 0 '1') (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '51')) 0 () () () 0
 0)
-92 'x' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+93 'x' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN IMPLICIT-SAVE 0 0 DIMENSION) (REAL 4 0 0 0 REAL ()) 0 0 () (2 0
 EXPLICIT (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '1') (CONSTANT (
 INTEGER 4 0 0 0 INTEGER ()) 0 '201') (CONSTANT (INTEGER 4 0 0 0 INTEGER
 ()) 0 '1') (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '51')) 0 () () () 0
 0)
-93 'xhigh' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+94 'xhigh' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN IMPLICIT-SAVE 0 0 DIMENSION) (REAL 4 0 0 0 REAL ()) 0 0 () (1 0
 EXPLICIT (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '1') (CONSTANT (
 INTEGER 4 0 0 0 INTEGER ()) 0 '201')) 0 () () () 0 0)
-94 'xlow' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+95 'xlow' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN IMPLICIT-SAVE 0 0 DIMENSION) (REAL 4 0 0 0 REAL ()) 0 0 () (1 0
 EXPLICIT (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '1') (CONSTANT (
 INTEGER 4 0 0 0 INTEGER ()) 0 '201')) 0 () () () 0 0)
-95 'y' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+96 'y' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN IMPLICIT-SAVE 0 0 DIMENSION) (REAL 4 0 0 0 REAL ()) 0 0 () (2 0
 EXPLICIT (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '1') (CONSTANT (
 INTEGER 4 0 0 0 INTEGER ()) 0 '201') (CONSTANT (INTEGER 4 0 0 0 INTEGER
 ()) 0 '1') (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '51')) 0 () () () 0
 0)
-96 'yhigh' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+97 'yhigh' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN IMPLICIT-SAVE 0 0 DIMENSION) (REAL 4 0 0 0 REAL ()) 0 0 () (1 0
 EXPLICIT (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '1') (CONSTANT (
 INTEGER 4 0 0 0 INTEGER ()) 0 '201')) 0 () () () 0 0)
-97 'ylow' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+98 'ylow' 'common_block' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
 UNKNOWN IMPLICIT-SAVE 0 0 DIMENSION) (REAL 4 0 0 0 REAL ()) 0 0 () (1 0
 EXPLICIT (CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '1') (CONSTANT (
 INTEGER 4 0 0 0 INTEGER ()) 0 '201')) 0 () () () 0 0)
@@ -468,6 +477,6 @@ INTEGER 4 0 0 0 INTEGER ()) 0 '201')) 0 () () () 0 0)
 'ro_old' 0 70 'ro_start' 0 71 'roe' 0 72 'roe_inc' 0 73 'roe_old' 0 74
 'roe_start' 0 75 'roin' 0 76 'roinlet' 0 77 'rovx' 0 78 'rovx_inc' 0 79
 'rovx_old' 0 80 'rovx_start' 0 81 'rovy' 0 82 'rovy_inc' 0 83 'rovy_old'
-0 84 'rovy_start' 0 85 'smooth_fac' 0 86 'title' 0 87 'tstagin' 0 88
-'v_guess' 0 89 'vx' 0 90 'vy' 0 91 'x' 0 92 'xhigh' 0 93 'xlow' 0 94 'y'
-0 95 'yhigh' 0 96 'ylow' 0 97)
+0 84 'rovy_start' 0 85 'smooth_fac' 0 86 'step' 0 87 'title' 0 88
+'tstagin' 0 89 'v_guess' 0 90 'vx' 0 91 'vy' 0 92 'x' 0 93 'xhigh' 0 94
+'xlow' 0 95 'y' 0 96 'yhigh' 0 97 'ylow' 0 98)

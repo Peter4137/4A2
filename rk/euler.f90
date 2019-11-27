@@ -72,44 +72,49 @@
           end do
         end do
 
+! Runge kutta scheme
+        nrkut_max = 4
+        do nrkut = 1,nrkut_max
+            frkut = 1.0/(1+nrkut_max-nrkut)
+
 ! "set_others" to set secondary flow variables.
 
-        call set_others
+            call set_others
 
 ! "apply_bconds" to apply inlet and outlet values at the boundaries of the domain.
 
-        call apply_bconds
+            call apply_bconds
 
 ! "set_fluxes" to set the fluxes of the mass, momentum, and energy throughout the domain.
 
-        call set_fluxes
+            call set_fluxes
 
 ! "sum_fluxes" applies a control volume analysis to enforce the finite volume method
 ! for each cell (calculates the residuals) and sets the increments for the nodal values.
 
-        call sum_fluxes(fluxi_mass,fluxj_mass,delro  , ro_inc)
-        call sum_fluxes(fluxi_enth,fluxj_enth,delroe ,roe_inc)
-        call sum_fluxes(fluxi_xmom,fluxj_xmom,delrovx,rovx_inc)
-        call sum_fluxes(fluxi_ymom,fluxj_ymom,delrovy,rovy_inc)
+            call sum_fluxes(fluxi_mass,fluxj_mass,delro  , ro_inc, frkut)
+            call sum_fluxes(fluxi_enth,fluxj_enth,delroe ,roe_inc, frkut)
+            call sum_fluxes(fluxi_xmom,fluxj_xmom,delrovx,rovx_inc, frkut)
+            call sum_fluxes(fluxi_ymom,fluxj_ymom,delrovy,rovy_inc, frkut)
 !
 ! Update solution
 
-        do i=1,ni
-          do j=1,nj
-            ro  (i,j) = ro_start  (i,j) + ro_inc  (i,j)
-            roe (i,j) = roe_start (i,j) + roe_inc (i,j)
-            rovx(i,j) = rovx_start(i,j) + rovx_inc(i,j)
-            rovy(i,j) = rovy_start(i,j) + rovy_inc(i,j)
-          end do
-        end do
+            do i=1,ni
+            do j=1,nj
+                  ro  (i,j) = ro_start  (i,j) + ro_inc  (i,j)
+                  roe (i,j) = roe_start (i,j) + roe_inc (i,j)
+                  rovx(i,j) = rovx_start(i,j) + rovx_inc(i,j)
+                  rovy(i,j) = rovy_start(i,j) + rovy_inc(i,j)
+            end do
+            end do
 
 ! Smooth the problem to ensure it remains stable.
 
-        call smooth(ro)
-        call smooth(rovx)
-        call smooth(rovy)
-        call smooth(roe)
-
+            call smooth(ro)
+            call smooth(rovx)
+            call smooth(rovy)
+            call smooth(roe)
+        end do 
 ! Check convergence and write out summary every 5 steps
 
         if(mod(nstep,5)==0) then
