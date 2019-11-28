@@ -1,4 +1,4 @@
-      subroutine smooth(prop)
+      subroutine smooth(prop, corr_prop)
 
 
       use common_block
@@ -12,11 +12,11 @@
 ! where sf is the smoothing factor.
 ! It is modified if the deferred correction extension is adopted.
 
-      real, dimension(i_max,j_max) ::  prop
+      real, dimension(i_max,j_max) ::  prop, corr_prop
 
 ! Local stuff
       real, dimension(i_max,j_max) ::  store
-      real  ::  sf, sfm1, avg, avg1, avgnj
+      real  ::  sf, sfm1, avg, avg1, avgnj, corrnew
       integer  ::  i, j, ip1, im1
 
 ! To avoid using already smoothed values for smoothing other values
@@ -29,6 +29,7 @@
 
       sf   = smooth_fac
       sfm1 = 1.0 - sf
+      fcorr = 0.9
 
       do i=1,ni
          ip1 = i+1
@@ -37,10 +38,13 @@
          if( i==1  ) im1 = 1
 
          do j=2,nj-1
-           avg = 0.25*(prop(ip1,j)+prop(im1,j)+prop(i,j-1)+prop(i,j+1))
+            avg = 0.25*(prop(ip1,j)+prop(im1,j)+prop(i,j-1)+prop(i,j+1))
+            corrnew = fcorr*(prop(i,j)-avg)
+            corr_prop(i,j) = 0.99*corr_prop(i,j) + 0.01*corrnew
 
 ! INSERT your code here
-           store(i,j) = sfm1*prop(i,j) + sf*avg
+            store(i,j) = avg + corr_prop(i,j)
+      !      store(i,j) = sfm1*prop(i,j) + sf*avg
 
          enddo
 

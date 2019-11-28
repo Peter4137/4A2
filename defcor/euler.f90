@@ -105,10 +105,10 @@
 
 ! Smooth the problem to ensure it remains stable.
 
-        call smooth(ro)
-        call smooth(rovx)
-        call smooth(rovy)
-        call smooth(roe)
+        call smooth(ro, corr_ro)
+        call smooth(rovx, corr_rovx)
+        call smooth(rovy, corr_rovy)
+        call smooth(roe, corr_roe)
 
 ! Check convergence and write out summary every 5 steps
 
