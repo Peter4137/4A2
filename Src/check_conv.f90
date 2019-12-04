@@ -104,5 +104,6 @@
       write(*,600) emax,imax,jmax,eavg
   600 format(' emax= ',e10.3,' at imax = ',i5,' jmax= ',i5,' eavg= ', e10.3)
       write(6,*) 'inlet flow= ',flow(1),' outlet to inlet flow ratio', flow_ratio
+      write(6,*) 'outlet flow= ',flow(ni)
 
       end
