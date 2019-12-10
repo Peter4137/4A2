@@ -43,7 +43,7 @@
 
       ! call crude_guess
       call flow_guess
-      call new_guess
+      ! call new_guess
       ! stop
 
 ! You can call "output" here to plot out your initial guess of

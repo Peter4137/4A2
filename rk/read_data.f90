@@ -12,8 +12,8 @@
 ! Assign unit 1 to the file 'geom'
 ! Assign unit 2 to the file 'flow'
 
-      open( unit = 1, file = "../test0_geom")
-      open( unit = 2, file = "../test0_flow")
+      open( unit = 1, file = "../test3_geom")
+      open( unit = 2, file = "../test3_flow")
 ! INSERT your code here
 
 ! Read in the title and ni and nj from unit 1.
@@ -30,7 +30,7 @@
 
       ! REAL, DIMENSION(1:ni) :: xlow, ylow, xhigh, yhigh
 
-      if(ni.lt.i_max.and.nj.lt.j_max) then
+      if(ni.le.i_max.and.nj.le.j_max) then
             do i=1,ni 
                   read(1,*) xlow(i), ylow(i), xhigh(i), yhigh(i)
             end do

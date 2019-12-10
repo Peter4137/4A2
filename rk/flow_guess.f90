@@ -82,11 +82,11 @@
 
       do i=1,ni                                             
             do j=1,nj
-                  dx  = abs(x(i,nj)-x(i,1))
-                  dy  = abs(y(i,nj)-y(i,1))
+                  dx  = x(i,nj)-x(i,1)
+                  dy  = y(i,nj)-y(i,1)
                   dxy = norm2([dx,dy]) 
                   vx(i,j) = v_guess(i)*dy/dxy
-                  vy(i,j) = v_guess(i)*dx/dxy
+                  vy(i,j) = -v_guess(i)*dx/dxy
                   ro(i,j) = ro_guess(i)
                   rovx(i,j) = ro_guess(i)*vx(i,j) 
                   rovy(i,j) = ro_guess(i)*vy(i,j)

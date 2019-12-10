@@ -1,30 +1,60 @@
 close all;
 clear
-fin = fopen('supersonic/euler.mat','r');
-data = fscanf(fin,'%f');
-ni = data(1,1);
-nj = data(2,1);
+fin1 = fopen('var_dt/euler.mat','r');
+data1 = fscanf(fin1,'%f');
+ni1 = data1(1,1);
+nj1 = data1(2,1);
 idone = 2;
-x = zeros(ni,nj);
-y = zeros(ni,nj);
-ro = zeros(ni,nj);
-vx = zeros(ni,nj);
-vy = zeros(ni,nj);
-p = zeros(ni,nj);
+x1 = zeros(ni,nj);
+y1 = zeros(ni,nj);
+ro1 = zeros(ni,nj);
+vx1 = zeros(ni,nj);
+vy1 = zeros(ni,nj);
+p1 = zeros(ni,nj);
 %
 for i=1:ni
   for j=1:nj
-    x(i,j)  = data(idone+1,1);
-    y(i,j)  = data(idone+2,1);
-    ro(i,j) = data(idone+3,1);
-    vx(i,j) = data(idone+4,1);
-    vy(i,j) = data(idone+5,1);
-    p(i,j)  = data(idone+6,1);
+    x1(i,j)  = data1(idone+1,1);
+    y1(i,j)  = data1(idone+2,1);
+    ro1(i,j) = data1(idone+3,1);
+    vx1(i,j) = data1(idone+4,1);
+    vy1(i,j) = data1(idone+5,1);
+    p1(i,j)  = data1(idone+6,1);
     idone = idone+6;
   end 
 end
-fclose(fin);
+fclose(fin1);
+
+fin2 = fopen('var_dt/euler.mat','r');
+data2 = fscanf(fin,'%f');
+ni2 = data2(1,1);
+nj2 = data2(2,1);
+idone = 2
+x2 = zeros(ni,nj);
+y2 = zeros(ni,nj);
+ro2 = zeros(ni,nj);
+vx2 = zeros(ni,nj);
+vy2 = zeros(ni,nj);
+p2 = zeros(ni,nj);
 %
+for i=1:ni
+  for j=1:nj
+    x2(i,j)  = data2(idone+1,1);
+    y2(i,j)  = data2(idone+2,1);
+    ro2(i,j) = data2(idone+3,1);
+    vx2(i,j) = data2(idone+4,1);
+    vy2(i,j) = data2(idone+5,1);
+    p2(i,j)  = data2(idone+6,1);
+    idone = idone+6;
+  end 
+end
+fclose(fin2);
+
+plot(vx1(ni1,:)-vx2(ni2,:), y(ni1,:))
+pause
+
+
+
 % Contour Static Pressure
 %
 figure('Name','Static Pressure');

@@ -73,7 +73,7 @@
         end do
 
 ! Runge kutta scheme
-        nrkut_max = 4
+        nrkut_max = 5
         do nrkut = 1,nrkut_max
             frkut = 1.0/(1+nrkut_max-nrkut)
 
