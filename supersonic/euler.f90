@@ -42,7 +42,8 @@
 ! with "flow_guess" to obtain a better guess and a faster solution.
 
       ! call crude_guess
-      call flow_guess
+      ! call flow_guess
+      call new_guess
       ! stop
 
 ! You can call "output" here to plot out your initial guess of
