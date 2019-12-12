@@ -21,7 +21,7 @@
     tinlet  = tstagin*(pinlet/pstagin)**fga
     vinlet  = sqrt(2*cp*(tstagin - tinlet))
     roin    = pinlet/rgas/tinlet
-    write(6,*) sqrt(gamma*tinlet*rgas)
+
     do j=1,nj
     do i=1,ni-1
         dx  = x(i+1,jmid) - x(i,jmid)

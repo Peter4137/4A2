@@ -42,8 +42,8 @@
 ! with "flow_guess" to obtain a better guess and a faster solution.
 
       ! call crude_guess
-      call flow_guess
-      ! call new_guess
+      ! call flow_guess
+      call new_guess
       ! stop
 
 ! You can call "output" here to plot out your initial guess of
@@ -118,7 +118,8 @@
             end do 
     ! Check convergence and write out summary every 5 steps
 
-        if(mod(nstep,5)==0) then
+       write(6,*) norm2([vx(2,25), vy(2, 25)])
+       if(mod(nstep,5)==0) then
             call set_timestep
             call check_conv
         end if

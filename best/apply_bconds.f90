@@ -40,7 +40,7 @@
         if ( roinlet(j) > 0.9999*rostagin ) then
           roinlet(j) = 0.9999*rostagin
         endif
-
+        
         tstat = tstagin*(roinlet(j)/rostagin)**gm1
 
         vel = sqrt(2*cp*(tstagin-tstat))

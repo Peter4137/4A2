@@ -42,8 +42,8 @@
 ! with "flow_guess" to obtain a better guess and a faster solution.
 
       ! call crude_guess
-      call flow_guess
-      ! call new_guess
+      ! call flow_guess
+      call new_guess
       ! stop
 
 ! You can call "output" here to plot out your initial guess of
@@ -61,7 +61,7 @@
 !************************************************************************
 !     start the time stepping do loop for "nsteps" loops.
 !************************************************************************
-
+    
       do nstep = 1, nsteps
 
             do i=1,ni
@@ -72,27 +72,27 @@
                 rovy_start(i,j) = rovy(i,j)
               end do
             end do
-    
+       
     ! Runge kutta scheme
             nrkut_max = 4
             do nrkut = 1,nrkut_max
                 frkut = 1.0/(1+nrkut_max-nrkut)
     
     ! "set_others" to set secondary flow variables.
-    
+                
                 call set_others
     
     ! "apply_bconds" to apply inlet and outlet values at the boundaries of the domain.
-    
+                
                 call apply_bconds
     
     ! "set_fluxes" to set the fluxes of the mass, momentum, and energy throughout the domain.
-    
+                
                 call set_fluxes
     
     ! "sum_fluxes" applies a control volume analysis to enforce the finite volume method
     ! for each cell (calculates the residuals) and sets the increments for the nodal values.
-    
+                
                 call sum_fluxes(fluxi_mass,fluxj_mass,delro  , ro_inc, frkut)
                 call sum_fluxes(fluxi_enth,fluxj_enth,delroe ,roe_inc, frkut)
                 call sum_fluxes(fluxi_xmom,fluxj_xmom,delrovx,rovx_inc, frkut)
@@ -110,14 +110,14 @@
                 end do
     
     ! Smooth the problem to ensure it remains stable.
-    
+                
                 call smooth(ro, corr_ro)
                 call smooth(rovx, corr_rovx)
                 call smooth(rovy, corr_rovy)
                 call smooth(roe, corr_roe)
             end do 
     ! Check convergence and write out summary every 5 steps
-
+     
         if(mod(nstep,5)==0) then
             call set_timestep
             call check_conv
